@@ -1,24 +1,20 @@
 # README
+Prerequisites
+The setups steps expect following tools installed on the system.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Ruby 3.0.2
+Rails 7.0.2
 
-Things you may want to cover:
+1. config database username and password in database.yml file
+   
+2. Create and setup the database
+   Run the following commands to create and setup the database.
 
-* Ruby version
+   bundle install   
+   rake db:create
+   rails db:migrate   
 
-* System dependencies
+3. Start the Rails server
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+   bundle exec rails s
+   And now you can visit the site with the URL http://localhost:3000
