@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  stock_symbol: MyString
+  buy_price: MyString
+  sell_price: MyString
+
+two:
+  stock_symbol: MyString
+  buy_price: MyString
+  sell_price: MyString

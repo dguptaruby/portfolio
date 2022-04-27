@@ -1,0 +1,2 @@
+class YourAmount < ApplicationRecord
+end

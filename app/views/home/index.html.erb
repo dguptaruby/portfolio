@@ -1,0 +1,78 @@
+<h1 class="text-center mt-3">Your Portfolio</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3 col-6">
+      <h5>Your Amount</h5>
+    </div>
+    <div class="col-lg-3 col-6">
+      <p><%= YourAmount.first.amount %></p>
+    </div>
+    <div class="col-lg-6 col-12">
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Add Your Amount
+      </button>
+  </div>
+  </div>
+</div>
+<% if flash.alert %>
+  <div class="alert alert-danger" role="alert">
+    <div class="container">
+      <%= flash.alert %>
+    </div>
+  </div>
+<% end %>
+
+<section>
+  <div class="container">
+  <table class="table mt-3">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Symbol</th>
+      <th scope="col">Buy Price</th>
+      <th scope="col">Current Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Total Investment</th>
+      <th scope="col">Profit/Loss</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @your_stocks.each do |stock|%>
+    <% if stock.up_price.to_f > stock.get_current_price[:current_price].round(2) %>
+      <tr class="bg-danger">
+    <% elsif stock.down_price.to_f > stock.get_current_price[:current_price].round(2) %>
+      <tr class="bg-success">
+    <%else%>
+      <tr>
+    <% end %>
+      <td></td>
+      <td class="text-uppercase"><%= stock.stock_symbol %></td>
+      <td><%= stock.buy_price %></td>
+      <td><%=stock.get_current_price[:current_price].round(2)%>
+      <td><%= stock.quatity %></td>
+      <td><%= (stock.buy_price.to_f*stock.quatity).round(2)%>
+      <td><%= profit(stock)%></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+  </div>
+
+
+</section>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Amount</h5>
+      </div>
+      <div class="modal-body">
+        <form action="<%= add_amount_path%>" method="post">
+          <input type="text" name="amount" placeholder="0.0"><br><br>
+          <input type="submit" value="Submit">
+        </form>
+      </div>
+    </div>
+  </div>
